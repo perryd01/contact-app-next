@@ -5,6 +5,7 @@ import prisma from "@/lib/prisma";
 async function getContacts() {
   const res = await prisma.contact.findMany({
     select: {
+      id: true,
       name: true,
       email: true,
       phone: true,
@@ -30,6 +31,7 @@ export default async function Home() {
         {data.map((c) => (
           <div key={c.email} className="py-3">
             <ContactListItem
+              id={c.id}
               name={c.name}
               number={c.phone}
               image={`/api/images/${c.Image?.id}`}

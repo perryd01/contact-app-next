@@ -20,6 +20,7 @@ export default function ProfilePicture({
     <div className={clsx(sizes[size], "aspect-square relative")}>
       <Image
         fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         src={image}
         alt={name}
         className="rounded-full w-full h-full border-[1px] border-grey-60"

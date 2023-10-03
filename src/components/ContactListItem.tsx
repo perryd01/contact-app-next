@@ -1,14 +1,17 @@
 import Image from "next/image";
 import ProfilePicture from "./ProfilePicture";
 import Button from "./Button";
+import Link from "next/link";
 
 type ContactListItemProps = {
+  id: number;
   name: string;
   number: string;
   image: string;
 };
 
 export default function ContactListItem({
+  id,
   image,
   name,
   number,
@@ -25,7 +28,9 @@ export default function ContactListItem({
       <div className="flex-row gap-2 group-hover:flex hidden">
         <Button icon="Mute" type="secondary" />
         <Button icon="Call" type="secondary" />
-        <Button icon="More" type="secondary" />
+        <Link href={`/edit/${id}`} scroll={false}>
+          <Button icon="More" type="secondary" />
+        </Link>
       </div>
     </div>
   );

@@ -26,6 +26,7 @@ type ButtonPropsTextWithIcon = {
 type ButtonPropsRest = {
   rounding?: ButtonRounding;
   type?: ButtonType;
+  onClick?: () => void;
 };
 
 type ButtonProps = ButtonPropsTextWithIcon & ButtonPropsRest;
@@ -53,6 +54,7 @@ const roundings = {
 export default function Button({
   rounding = "base",
   type = "primary",
+  onClick,
   ...props
 }: ButtonProps) {
   const foo = "bar";
@@ -69,6 +71,7 @@ export default function Button({
         roundings[rounding],
         "transition-colors"
       )}
+      onClick={onClick}
     >
       {props.icon && (
         <Image

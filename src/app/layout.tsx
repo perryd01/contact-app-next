@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
+import Link from "next/link";
 
 const glysa = localFont({
   src: "../../public/fonts/Glysa.otf",
@@ -21,14 +22,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal?: React.ReactNode;
 }) {
   return (
     <html lang="en" className={`${glysa.variable} ${lexendDeca.variable}`}>
       <body className="bg-grey-100 text-white-primary mx-auto w-full min-h-screen">
         {/* first row */}
-        <div className="grid grid-cols-3">
+        <div
+          className="grid grid-cols-3"
+          style={{
+            gridTemplateColumns: "1fr max-content 1fr",
+          }}
+        >
           <div className="h-24 border-r-[1px] border-grey-60"></div>
           <div className="h-2"></div>
           <div className="h-24 border-l-[1px] border-grey-60"></div>
@@ -43,7 +51,9 @@ export default function RootLayout({
                 <Button icon="Search" type="secondary" />
                 <Button icon="More" type="secondary" />
               </div>
-              <Button icon="Add" type="special" text="Add new" />
+              <Link href="/add" scroll={false}>
+                <Button icon="Add" type="special" text="Add new" />
+              </Link>
             </div>
           </div>
           <div className="grow flex flex-row justify-start items-center p-6 border-y-[1px] border-grey-60">
@@ -51,9 +61,12 @@ export default function RootLayout({
           </div>
           {/* third row */}
           <div />
-          <div className="border-x-[1px] border-grey-60">{children}</div>
+          <div className="border-x-[1px] border-grey-60 min-w-[768px]">
+            {children}
+          </div>
           <div />
         </div>
+        {modal}
       </body>
     </html>
   );

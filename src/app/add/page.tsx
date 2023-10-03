@@ -1,7 +1,5 @@
+import EditPanel from "@/components/EditPanel";
+
 export default async function Add() {
-  return (
-    <main>
-      <h1>Add</h1>
-    </main>
-  );
+  return <EditPanel mode={"add"} />;
 }

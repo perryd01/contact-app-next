@@ -37,6 +37,9 @@ const config: Config = {
         "20": "#3c3c3c",
         "10": "#414141",
       },
+      black: {
+        100: "#000000",
+      },
     },
     borderRadius: {
       none: "0",
