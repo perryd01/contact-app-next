@@ -27,5 +27,5 @@ export default async function EditSelected({
     notFound();
   }
 
-  return <EditPanel mode="edit" contact={contact} />;
+  return <EditPanel mode="edit" contact={contact} returnTo="/" />;
 }
