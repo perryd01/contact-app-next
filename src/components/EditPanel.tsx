@@ -46,7 +46,20 @@ const title = {
   [key in EditPanelProps["mode"]]: string;
 };
 
-const fieldNames = ["name", "phone", "email"] as const;
+const fieldNames = [
+  {
+    key: "name",
+    label: "Name",
+  },
+  {
+    key: "phone",
+    label: "Phone number",
+  },
+  {
+    key: "email",
+    label: "Email address",
+  },
+] as const;
 
 type ValidationSchema = z.infer<typeof contactSchema>;
 
@@ -153,14 +166,13 @@ export default function EditPanel(props: EditPanelProps) {
         </div>
       </div>
       <div className="flex flex-col gap-6 ">
-        {fieldNames.map((fieldname) => (
-          <div key={fieldname} className="flex flex-col gap-1">
-            <label className="text-white-secondary m block">{fieldname}</label>
-            <input
-              {...register(fieldname)}
-              className="bg-grey-60 rounded-sm border-[1px] border-grey-10 px-3 py-[11px] b"
-            />
-          </div>
+        {fieldNames.map((fieldName) => (
+          <FormField
+            fieldName={fieldName.key}
+            label={fieldName.label}
+            register={register}
+            key={fieldName.key}
+          />
         ))}
       </div>
       <div className="py-6 flex flex-row justify-end">
