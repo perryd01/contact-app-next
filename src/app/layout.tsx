@@ -1,9 +1,10 @@
 import Button from "@/components/Button";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import Link from "next/link";
+import PageLayout from "@/components/layouts/PageLayout";
+import Providers from "@/utils/provider";
 
 const glysa = localFont({
   src: "../../public/fonts/Glysa.otf",
@@ -30,43 +31,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${glysa.variable} ${lexendDeca.variable}`}>
       <body className="bg-grey-100 text-white-primary mx-auto w-full min-h-screen">
-        {/* first row */}
-        <div
-          className="grid grid-cols-3"
-          style={{
-            gridTemplateColumns: "1fr max-content 1fr",
-          }}
-        >
-          <div className="h-24 border-r-[1px] border-grey-60"></div>
-          <div className="h-2"></div>
-          <div className="h-24 border-l-[1px] border-grey-60"></div>
-          {/* second row */}
-          <div className="flex flex-row justify-end items-center p-6 border-y-[1px] border-grey-60">
-            <Button icon="Back arrow" type="secondary" />
-          </div>
-          <div className="p-6 flex flex-row justify-between px-6 border-[1px] border-grey-60">
-            <h1>Contacts</h1>
-            <div className="flex flex-row gap-6">
-              <div className="flex flex-row gap-2">
-                <Button icon="Search" type="secondary" />
-                <Button icon="More" type="secondary" />
-              </div>
-              <Link href="/add" scroll={false}>
-                <Button icon="Add" type="special" text="Add new" />
-              </Link>
-            </div>
-          </div>
-          <div className="grow flex flex-row justify-start items-center p-6 border-y-[1px] border-grey-60">
-            <Button icon="Light mode" type="secondary" />
-          </div>
-          {/* third row */}
-          <div />
-          <div className="border-x-[1px] border-grey-60 min-w-[768px]">
-            {children}
-          </div>
-          <div />
-        </div>
-        {modal}
+        <Providers>
+          <PageLayout>{children}</PageLayout>
+          {modal}
+        </Providers>
       </body>
     </html>
   );
