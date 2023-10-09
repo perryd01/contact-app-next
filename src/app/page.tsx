@@ -1,4 +1,3 @@
-import ContactListItem from "@/components/ContactListItem";
 import { getContacts } from "./api/contacts/route";
 import ListContacts from "./list-contacts";
 

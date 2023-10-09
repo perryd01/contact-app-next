@@ -1,14 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import ProfilePicture from "./ProfilePicture";
 import Button from "./Button";
-import Link from "next/link";
 import { useState } from "react";
 import DropDownItem from "./DropDownItem";
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 import clsx from "clsx";
-import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
@@ -27,7 +24,6 @@ export default function ContactListItem({
   number,
 }: ContactListItemProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
 
   const queryClient = useQueryClient();
 
