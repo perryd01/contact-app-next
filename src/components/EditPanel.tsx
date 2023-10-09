@@ -136,7 +136,7 @@ export default function EditPanel(props: EditPanelProps) {
             <Button
               icon="Add"
               text="Add picture"
-              type="primary"
+              variant="primary"
               onClick={() => fileInputRef.current?.click()}
             />
           ) : (
@@ -144,7 +144,7 @@ export default function EditPanel(props: EditPanelProps) {
               <Button
                 icon="Change"
                 text="Change picture"
-                type="primary"
+                variant="primary"
                 onClick={() => fileInputRef.current?.click()}
               />
               <Button icon="Delete" onClick={() => setProfilePic(null)} />
@@ -164,8 +164,8 @@ export default function EditPanel(props: EditPanelProps) {
         ))}
       </div>
       <div className="py-6 flex flex-row justify-end">
-        <Button text="Cancel" type="secondary" onClick={onCancel} />
-        <Button buttonType="submit" text="Done" type="primary" />
+        <Button text="Cancel" variant="secondary" onClick={onCancel} />
+        <Button type="submit" text="Done" variant="primary" />
       </div>
     </form>
   );

@@ -1,8 +1,9 @@
 import { IconVariant } from "@/types/IconVariant";
 import clsx from "clsx";
 import Image from "next/image";
+import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
-type ButtonType = "primary" | "secondary" | "special";
+type ButtonVariant = "primary" | "secondary" | "special";
 
 type ButtonRounding = "base" | "full";
 
@@ -13,10 +14,12 @@ type ButtonPropsTextWithIcon = {
 
 type ButtonPropsRest = {
   rounding?: ButtonRounding;
-  type?: ButtonType;
+  variant?: ButtonVariant;
   onClick?: () => void;
-  buttonType?: "button" | "submit" | "reset";
-};
+} & DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+>;
 
 type ButtonProps = ButtonPropsTextWithIcon & ButtonPropsRest;
 
@@ -31,7 +34,7 @@ const bgColors = {
   special:
     "bg-gradient-to-t from-grey-60/70 to-grey-60 hover:to-white-primary/5 border border-grey-20",
 } satisfies {
-  [key in ButtonType]: string;
+  [key in ButtonVariant]: string;
 };
 
 const roundings = {
@@ -43,21 +46,22 @@ const roundings = {
 
 export default function Button({
   rounding = "base",
-  type = "primary",
+  variant = "primary",
+  type = "button",
   onClick,
   ...props
 }: ButtonProps) {
-  if (type === "special") rounding = "full";
+  if (variant === "special") rounding = "full";
 
   return (
     <button
-      type={props.buttonType ?? "button"}
+      {...props}
       className={clsx(
         props.text && props.icon && paddings["textWithIcon"],
         props.text && !props.icon && paddings["text"],
         "h-10 min-w-[40px] w-fit",
         "flex flex-row justify-center items-center gap-2",
-        bgColors[type],
+        bgColors[variant],
         roundings[rounding],
         "transition-colors"
       )}

@@ -53,11 +53,11 @@ export default function ContactListItem({
           "flex-row relative gap-2 group-hover:flex"
         )}
       >
-        <Button icon="Mute" type="secondary" />
-        <Button icon="Call" type="secondary" />
+        <Button icon="Mute" variant="secondary" />
+        <Button icon="Call" variant="secondary" />
         <Button
           icon="More"
-          type="secondary"
+          variant="secondary"
           onClick={() => {
             setIsDropdownOpen(!isDropdownOpen);
           }}

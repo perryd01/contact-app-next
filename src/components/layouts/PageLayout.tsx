@@ -18,22 +18,22 @@ export default function PageLayout({
       <div className="h-24 border-l-[1px] border-grey-60"></div>
       {/* second row */}
       <div className="flex flex-row justify-end items-center p-6 border-y-[1px] border-grey-60">
-        <Button icon="Back arrow" type="secondary" />
+        <Button icon="Back arrow" variant="secondary" />
       </div>
       <div className="p-6 flex flex-row justify-between px-6 border-[1px] border-grey-60">
         <h1>Contacts</h1>
         <div className="flex flex-row gap-6">
           <div className="flex flex-row gap-2">
-            <Button icon="Search" type="secondary" />
-            <Button icon="More" type="secondary" />
+            <Button icon="Search" variant="secondary" />
+            <Button icon="More" variant="secondary" />
           </div>
           <Link href="/add" scroll={false} prefetch={false}>
-            <Button icon="Add" type="special" text="Add new" />
+            <Button icon="Add" variant="special" text="Add new" />
           </Link>
         </div>
       </div>
       <div className="grow flex flex-row justify-start items-center p-6 border-y-[1px] border-grey-60">
-        <Button icon="Light mode" type="secondary" />
+        <Button icon="Light mode" variant="secondary" />
       </div>
       {/* third row */}
       <div />
