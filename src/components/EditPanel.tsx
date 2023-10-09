@@ -9,6 +9,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
+import { contactSchema } from "@/lib/schemas";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -47,14 +48,7 @@ const title = {
 
 const fieldNames = ["name", "phone", "email"] as const;
 
-const formSchema = z.object({
-  name: z.string().min(1),
-  phone: z.string().min(1),
-  email: z.string().email(),
-  image: z.string().optional(),
-});
-
-type ValidationSchema = z.infer<typeof formSchema>;
+type ValidationSchema = z.infer<typeof contactSchema>;
 
 export default function EditPanel(props: EditPanelProps) {
   const hasData = props.mode === "edit";
@@ -94,6 +88,7 @@ export default function EditPanel(props: EditPanelProps) {
     formState: { errors },
   } = useForm<ValidationSchema>({
     defaultValues: data,
+    resolver: zodResolver(contactSchema),
   });
 
   const router = useRouter();
