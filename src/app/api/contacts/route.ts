@@ -2,6 +2,10 @@ import prisma from "@/lib/prisma";
 import { contactSchema } from "@/lib/schemas";
 import { NextRequest, NextResponse } from "next/server";
 
+export type AwaitedGetContactsReturnType = Awaited<
+  ReturnType<typeof getContacts>
+>;
+
 export async function getContacts() {
   return await prisma.contact.findMany({
     select: {
@@ -21,7 +25,7 @@ export async function getContacts() {
   });
 }
 
-export async function GET(request: any) {
+export async function GET() {
   const contacts = await getContacts();
   return NextResponse.json(contacts);
 }

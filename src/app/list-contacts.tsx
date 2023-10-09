@@ -2,11 +2,18 @@
 
 import ContactListItem from "@/components/ContactListItem";
 import { useQuery } from "@tanstack/react-query";
-import { getContacts } from "./api/contacts/route";
+import {
+  AwaitedGetContactsReturnType,
+  getContacts,
+} from "./api/contacts/route";
 import axios from "axios";
 
-export default function ListContacts({ contacts }: { contacts: any[] }) {
-  const { data } = useQuery({
+export default function ListContacts({
+  contacts,
+}: {
+  contacts: AwaitedGetContactsReturnType;
+}) {
+  const { data } = useQuery<AwaitedGetContactsReturnType>({
     queryKey: ["contacts"],
     queryFn: () => axios.get("/api/contacts").then((res) => res.data),
     initialData: contacts,
@@ -18,8 +25,7 @@ export default function ListContacts({ contacts }: { contacts: any[] }) {
   return (
     <div className="flex flex-col">
       {data &&
-        Array.isArray(data) &&
-        data?.map((c: any) => (
+        data.map((c) => (
           <div key={c.email} className="py-3">
             <ContactListItem
               id={c.id}

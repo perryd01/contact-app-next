@@ -6,7 +6,7 @@ const paramsSchema = z.object({
   id: z.coerce.number().min(0).int(),
 });
 
-export async function GET(request: any, { params }: any) {
+export async function GET(_: any, { params }: any) {
   const schemaResult = paramsSchema.safeParse({ id: params.id });
 
   if (!schemaResult.success) {

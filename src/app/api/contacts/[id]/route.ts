@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { contactSchema } from "@/lib/schemas";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest, { params }: any) {
+export async function GET(_: Request, { params }: any) {
   const id = Number(params.id);
   const contact = await prisma.contact.findMany({
     select: {
@@ -31,7 +31,7 @@ export async function GET(request: NextRequest, { params }: any) {
   });
 }
 
-export async function PUT(request: any) {
+export async function PUT(request: Request) {
   const body = await request.json();
 
   const schemaResult = contactSchema.safeParse(body);
@@ -71,7 +71,7 @@ export async function PUT(request: any) {
   });
 }
 
-export async function DELETE(request: NextRequest, { params }: any) {
+export async function DELETE(_: NextRequest, { params }: any) {
   const id = Number(params.id);
   const contact = await prisma.contact.findFirst({
     where: {
