@@ -28,7 +28,8 @@ const paddings = {
 const bgColors = {
   primary: "bg-grey-60 hover:bg-grey-50 active:bg-grey-40",
   secondary: "bg-transparent hover:bg-grey-90 active:bg-grey-80",
-  special: "bg-gradient-to-t from-grey-60/70 to-grey-60",
+  special:
+    "bg-gradient-to-t from-grey-60/70 to-grey-60 hover:to-white-primary/5 border border-grey-20",
 } satisfies {
   [key in ButtonType]: string;
 };
@@ -46,7 +47,6 @@ export default function Button({
   onClick,
   ...props
 }: ButtonProps) {
-  const foo = "bar";
   if (type === "special") rounding = "full";
 
   return (
