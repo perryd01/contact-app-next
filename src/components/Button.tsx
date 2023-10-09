@@ -1,18 +1,6 @@
+import { IconVariant } from "@/types/IconVariant";
 import clsx from "clsx";
 import Image from "next/image";
-
-type IconVariant =
-  | "Add"
-  | "Back arrow"
-  | "Call"
-  | "Change"
-  | "Delete"
-  | "Favourite"
-  | "Light mode"
-  | "More"
-  | "Mute"
-  | "Search"
-  | "Settings";
 
 type ButtonType = "primary" | "secondary" | "special";
 
@@ -27,6 +15,7 @@ type ButtonPropsRest = {
   rounding?: ButtonRounding;
   type?: ButtonType;
   onClick?: () => void;
+  buttonType?: "button" | "submit" | "reset";
 };
 
 type ButtonProps = ButtonPropsTextWithIcon & ButtonPropsRest;
@@ -62,6 +51,7 @@ export default function Button({
 
   return (
     <button
+      type={props.buttonType ?? "button"}
       className={clsx(
         props.text && props.icon && paddings["textWithIcon"],
         props.text && !props.icon && paddings["text"],

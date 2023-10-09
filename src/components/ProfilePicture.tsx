@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 type ProfilePictureProps = {
   size?: "small" | "big";
-  image: string;
+  image: string | undefined;
   name: string;
 };
 
@@ -16,14 +16,17 @@ export default function ProfilePicture({
     small: "w-10 h-10",
     big: "w-[88px] h-[88px]",
   };
+
+  const fallbackImage = "/pictures/Default.png";
+
   return (
     <div className={clsx(sizes[size], "aspect-square relative")}>
       <Image
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        src={image}
+        src={image ? image : fallbackImage}
         alt={name}
-        className="rounded-full w-full h-full border-[1px] border-grey-60"
+        className="rounded-full w-full h-full border-[1px] border-grey-60 "
       />
     </div>
   );
